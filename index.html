@@ -1,0 +1,836 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Leonstrada, personal trainer in Northampton</title>
+<meta name="description" content="One-to-one strength, mobility, rehabilitation and kickboxing with Dave, a black-belt instructor. 37 Oakgrove Pl, Northampton NN4 0SB. Call 07738 091794.">
+<meta property="og:title" content="Leonstrada, personal trainer in Northampton">
+<meta property="og:description" content="One-to-one strength, mobility, rehabilitation and kickboxing in Northampton. Rated 5.0 from 32 Google reviews.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#C8341C">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23C8341C'/%3E%3Cpath d='M18 12h9v31h19v9H18z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;600;900&family=Geist+Mono:wght@500&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js')</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HealthClub",
+  "name": "Leonstrada - Fitness and Rehabilitation",
+  "description": "Personal trainer (strength, mobility and rehabilitation) and black-belt kickboxing instructor in Northampton.",
+  "telephone": "+447738091794",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "37 Oakgrove Pl",
+    "addressLocality": "Northampton",
+    "postalCode": "NN4 0SB",
+    "addressCountry": "GB"
+  },
+  "geo": { "@type": "GeoCoordinates", "latitude": 52.205187699999996, "longitude": -0.8934498999999999 },
+  "hasMap": "https://www.google.com/maps/place/?q=place_id:ChIJ7z71oX4Pd0gRB2Ogsf91SHo",
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "06:30", "closes": "18:30" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday","Sunday"], "opens": "08:00", "closes": "18:00" }
+  ],
+  "sameAs": ["https://www.instagram.com/leonstrada_fitness/"]
+}
+</script>
+<style>
+/* ==========================================================================
+   DESIGN DECISIONS — Leonstrada, Northampton
+   Direction: SWISS MODERN, fully committed. A one-to-one coach whose reviews
+     talk about measurable progress ("stronger week on week"), patience and
+     kickboxing. Precision grotesk, strict 12-col grid, flat colour blocks,
+     big numbers, thin rules, mono captions. No usable photos (one Street View
+     frame, one unrelated customer snapshot), so the site is typography-led:
+     shapes drawn in code (a concentric "pad" target, timetable bars).
+   Palette: warm paper + near-black ink, ONE loud move: signal vermilion
+     (#C8341C, the colour of a strike pad / a red belt stripe). White on brand
+     = 5.3:1, brand on paper = 4.7:1. Everything else neutral.
+   Type: Schibsted Grotesk 400/600/900 (display at 900 with tight negative
+     tracking, body at 400) + Geist Mono 500 for labels, numbers and times.
+   Hero: typographic poster. Giant three-line headline taken from a review
+     ("stronger week on week"), a vermilion block carrying the 5.0 rating and
+     the main actions; on desktop the block becomes a tall column with the pad.
+   Rhythm: poster hero → sticky-side proof (rail on mobile) → oversized
+     numbered accordion → ink metric grid (health check) → editorial two-col
+     + pull quote → vermilion big-type statement → SIGNATURE: live weekly
+     timetable with a moving "now" line + map → giant phone poster → footer.
+   ========================================================================== */
+:root{
+  --bg:#F3F1EC; --surface:#E8E5DD; --ink:#141412; --ink-soft:#55534D;
+  --brand:#C8341C; --brand-ink:#FFFFFF; --accent:#1F1F1C; --line:#CFCBC1;
+  --line-ink:rgba(255,255,255,.18);
+
+  --font:"Schibsted Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --mono:"Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --step--1:clamp(.8125rem,.78rem + .15vw,.875rem);
+  --step-0:clamp(1.0625rem,1.02rem + .2vw,1.1875rem);
+  --step-1:clamp(1.25rem,1.15rem + .45vw,1.5rem);
+  --step-2:clamp(1.5rem,1.3rem + .9vw,2.125rem);
+  --step-3:clamp(2rem,1.6rem + 1.8vw,3.25rem);
+  --step-4:clamp(2.5rem,1.8rem + 3.4vw,4.75rem);
+  --step-5:clamp(3rem,1.9rem + 6vw,7rem);
+  --step-6:clamp(3.4rem,21vw,10rem);
+
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:24px;
+  --space-6:32px; --space-7:48px; --space-8:64px; --space-9:96px; --space-10:128px;
+  --section:clamp(64px,12vw,160px);
+  --gutter:clamp(20px,5vw,48px);
+  --max:1280px;
+  --radius:2px; --radius-pill:999px;
+
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  --ease-in-out:cubic-bezier(.65,0,.35,1);
+  --dur-1:180ms; --dur-2:400ms; --dur-3:800ms;
+  --bar:72px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 var(--step-0)/1.58 var(--font);
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;padding-bottom:calc(var(--bar) + env(safe-area-inset-bottom))}
+@media (min-width:768px){body{padding-bottom:0}}
+img,svg,iframe{display:block;max-width:100%}
+h1,h2,h3,p,ul,ol,blockquote,figure,dl,dd{margin:0}
+ul,ol{padding:0;list-style:none}
+h1,h2,h3{font-weight:900;letter-spacing:-.035em;line-height:.95;text-wrap:balance}
+p{text-wrap:pretty}
+a{color:inherit}
+::selection{background:var(--brand);color:var(--brand-ink)}
+:focus-visible{outline:2px solid var(--brand);outline-offset:3px;border-radius:var(--radius)}
+.on-brand :focus-visible,.on-ink :focus-visible{outline-color:#fff}
+[id]{scroll-margin-top:80px}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:fixed;left:var(--space-4);top:-100px;z-index:100;background:var(--ink);color:#fff;padding:var(--space-3) var(--space-4);text-decoration:none}
+.skip:focus{top:var(--space-4)}
+
+/* ---- layout ---- */
+.wrap{width:100%;max-width:var(--max);margin-inline:auto;padding-inline:var(--gutter)}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--space-4)}
+@media (min-width:960px){.grid{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--space-5)}}
+.section{padding-block:var(--section)}
+.label{font:500 var(--step--1)/1.3 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
+.on-brand .label,.on-ink .label{color:inherit;opacity:.78}
+.idx{font:500 var(--step--1)/1 var(--mono);letter-spacing:.04em}
+.lede{font-size:var(--step-1);line-height:1.45;max-width:34ch}
+.prose{max-width:62ch;color:var(--ink-soft)}
+.prose p+p{margin-top:var(--space-4)}
+.rule{border:0;border-top:1px solid var(--line);margin:0}
+.sec-head{display:flex;justify-content:space-between;align-items:baseline;gap:var(--space-4);padding-bottom:var(--space-4);border-bottom:1px solid currentColor;margin-bottom:var(--space-7)}
+.on-ink .sec-head,.on-brand .sec-head{border-color:var(--line-ink)}
+.link{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.22em;text-decoration-color:color-mix(in srgb,currentColor 40%,transparent);transition:text-decoration-color var(--dur-1)}
+@media (hover:hover){.link:hover{text-decoration-color:currentColor}}
+.ico{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.stars{display:inline-flex;gap:2px}
+.stars svg{width:14px;height:14px;fill:currentColor}
+
+/* ---- buttons ---- */
+.btn{--b:var(--ink);--f:var(--bg);position:relative;display:inline-flex;align-items:center;justify-content:center;gap:var(--space-3);
+  min-height:52px;padding:0 var(--space-5);border:1.5px solid var(--b);background:var(--b);color:var(--f);
+  font:600 var(--step-0)/1 var(--font);letter-spacing:-.01em;text-decoration:none;border-radius:var(--radius);overflow:hidden;isolation:isolate;
+  transition:transform var(--dur-1) var(--ease-out),color var(--dur-2) var(--ease-out)}
+.btn::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--f);transform:scaleY(0);transform-origin:bottom;transition:transform var(--dur-2) var(--ease-out)}
+.btn:active{transform:scale(.97)}
+@media (hover:hover){.btn:hover{color:var(--b)}.btn:hover::before{transform:scaleY(1)}.btn:hover .ico{transform:translateX(3px)}}
+.btn .ico{transition:transform var(--dur-2) var(--ease-out)}
+.btn--ghost{background:transparent;color:var(--b)}
+.btn--ghost::before{background:var(--b)}
+@media (hover:hover){.btn--ghost:hover{color:var(--f)}}
+.btn--light{--b:#fff;--f:var(--brand)}
+.btn--onlight{--b:var(--brand);--f:#fff}
+
+/* ---- header ---- */
+.hdr{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid transparent;transition:border-color var(--dur-2),background var(--dur-2)}
+.hdr.is-scrolled{border-color:var(--line)}
+.hdr__in{display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);height:68px;transition:height var(--dur-2) var(--ease-out)}
+.hdr.is-scrolled .hdr__in{height:56px}
+.mark{display:inline-flex;align-items:center;gap:var(--space-3);text-decoration:none;min-height:44px}
+.mark__sq{display:grid;place-items:center;width:34px;height:34px;background:var(--brand);color:#fff;transition:width var(--dur-2) var(--ease-out),height var(--dur-2) var(--ease-out)}
+.hdr.is-scrolled .mark__sq{width:28px;height:28px}
+.mark__sq svg{width:56%;height:56%;fill:currentColor}
+.mark__txt{font-weight:900;font-size:1.25rem;letter-spacing:-.04em;line-height:1}
+.mark__txt small{display:block;font:500 .625rem/1.2 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-top:3px}
+.nav{display:none}
+.hdr__cta{display:none}
+.menu-btn{display:inline-flex;align-items:center;gap:var(--space-3);min-height:44px;min-width:44px;padding:0 var(--space-3);background:none;border:1px solid var(--ink);border-radius:var(--radius);color:var(--ink);font:500 var(--step--1)/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+.menu-btn__bars{position:relative;width:18px;height:10px}
+.menu-btn__bars::before,.menu-btn__bars::after{content:"";position:absolute;left:0;right:0;height:1.75px;background:currentColor;transition:transform var(--dur-2) var(--ease-out),top var(--dur-2) var(--ease-out)}
+.menu-btn__bars::before{top:0}.menu-btn__bars::after{top:8px}
+.menu-btn[aria-expanded="true"] .menu-btn__bars::before{top:4px;transform:rotate(45deg)}
+.menu-btn[aria-expanded="true"] .menu-btn__bars::after{top:4px;transform:rotate(-45deg)}
+@media (min-width:960px){
+  .menu-btn{display:none}
+  .nav{display:flex;gap:var(--space-5)}
+  .nav a{font-weight:600;font-size:var(--step--1);text-decoration:none;padding:var(--space-3) 0;background:linear-gradient(currentColor,currentColor) 0 calc(100% - 8px)/0 1.5px no-repeat;transition:background-size var(--dur-2) var(--ease-out)}
+  .nav a:hover{background-size:100% 1.5px}
+  .hdr__cta{display:inline-flex;min-height:44px;font-size:var(--step--1)}
+}
+.drawer{position:fixed;inset:0;z-index:49;background:var(--ink);color:#fff;padding:96px var(--gutter) calc(var(--space-7) + env(safe-area-inset-bottom));display:flex;flex-direction:column;justify-content:space-between;
+  visibility:hidden;clip-path:inset(0 0 100% 0);transition:clip-path var(--dur-2) var(--ease-in-out),visibility 0s var(--dur-2)}
+.drawer.is-open{visibility:visible;clip-path:inset(0);transition:clip-path var(--dur-2) var(--ease-in-out)}
+.drawer ol{counter-reset:n}
+.drawer li{border-bottom:1px solid var(--line-ink);overflow:hidden}
+.drawer li a{display:flex;align-items:baseline;gap:var(--space-4);padding:var(--space-4) 0;font-weight:900;font-size:var(--step-3);letter-spacing:-.035em;text-decoration:none;
+  transform:translateY(105%);transition:transform var(--dur-2) var(--ease-out)}
+.drawer li a::before{counter-increment:n;content:"0" counter(n);font:500 var(--step--1)/1 var(--mono);opacity:.6;letter-spacing:.04em}
+.drawer.is-open li a{transform:none;transition-delay:calc(120ms + var(--i) * 60ms)}
+.drawer__foot{display:grid;gap:var(--space-3)}
+.drawer .label{color:rgba(255,255,255,.72)}
+.hdr.menu-open{background:var(--ink);color:#fff;border-color:transparent}
+.hdr.menu-open .menu-btn{color:#fff;border-color:#fff}
+.hdr.menu-open .mark__txt small{color:rgba(255,255,255,.7)}
+body.lock{overflow:hidden}
+
+/* ---- hero ---- */
+.hero{padding-top:var(--space-6);padding-bottom:0}
+.hero__meta{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:var(--space-3);margin-bottom:var(--space-5)}
+.badge{display:inline-flex;align-items:center;gap:var(--space-2);min-height:30px;padding:0 var(--space-3);border:1px solid var(--line);border-radius:var(--radius-pill);font:500 var(--step--1)/1 var(--mono);letter-spacing:.02em;white-space:nowrap}
+.badge::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ink-soft)}
+.badge[data-open="true"]::before{background:#2E8B57;box-shadow:0 0 0 0 rgba(46,139,87,.5);animation:pulse 2.4s var(--ease-out) infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 8px rgba(46,139,87,0)}100%{box-shadow:0 0 0 0 rgba(46,139,87,0)}}
+.hero h1{grid-column:1/-1;font-size:var(--step-6);line-height:.88;letter-spacing:-.055em;margin-left:-.04em}
+.hero h1 .ln{display:block;overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em}
+.hero h1 .ln>span{display:block}
+.hero h1 em{font-style:normal;color:var(--brand)}
+.hero__side{grid-column:1/-1;margin-top:var(--space-6);display:grid;gap:var(--space-5)}
+.hero__side p{max-width:40ch;color:var(--ink-soft)}
+.hero__side strong{color:var(--ink);font-weight:600}
+.tags{display:flex;flex-wrap:wrap;gap:var(--space-2)}
+.tags li{font:500 var(--step--1)/1 var(--mono);letter-spacing:.03em;padding:var(--space-2) var(--space-3);border:1px solid currentColor;border-radius:var(--radius-pill);opacity:.9}
+.pad{grid-column:1/-1;position:relative;margin-top:var(--space-7);margin-inline:calc(var(--gutter) * -1);background:var(--brand);color:var(--brand-ink);padding:var(--space-6) var(--gutter) var(--space-6);overflow:hidden;isolation:isolate}
+.pad__rings{position:absolute;z-index:-1;right:-34%;top:-30%;width:95%;aspect-ratio:1;color:rgba(255,255,255,.22)}
+.pad__score{display:flex;align-items:flex-end;gap:var(--space-4)}
+.pad__num{font-weight:900;font-size:clamp(5rem,26vw,9rem);line-height:.78;letter-spacing:-.06em}
+.pad__score .stars svg{width:18px;height:18px}
+.pad__score p{font-weight:600;line-height:1.3}
+.pad__score a{font-weight:400}
+.pad__ctas{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);margin-top:var(--space-6)}
+.pad__ctas .btn{padding:0 var(--space-3)}
+.pad__ctas .btn:first-child{--b:#fff;--f:var(--ink);color:var(--brand)}
+@media (hover:hover){.pad__ctas .btn:first-child:hover{color:#fff}}
+@media (max-width:959px){.hero h1{order:1}.pad{order:2;margin-top:var(--space-6)}.hero__side{order:3;margin-top:var(--space-6);margin-bottom:var(--space-6)}}
+@media (min-width:640px){.pad{padding-block:var(--space-7)}.pad__rings{right:-12%;top:-60%;width:60%}}
+@media (min-width:960px){
+  .hero{padding-top:var(--space-8);padding-bottom:var(--space-8)}
+  .hero .grid{align-items:end}
+  .hero h1{grid-column:1/10;grid-row:1/3}
+  .hero__side{grid-column:1/7;grid-row:3;margin-top:var(--space-7)}
+  .pad{grid-column:10/13;grid-row:1/4;margin:0;align-self:stretch;display:flex;flex-direction:column;justify-content:flex-end;padding:var(--space-6);min-height:560px}
+  .pad__rings{right:-40%;top:-10%;width:180%}
+  .pad__score{flex-direction:column;align-items:flex-start}
+  .pad__num{font-size:clamp(6rem,10vw,9rem)}
+  .pad__ctas{grid-template-columns:1fr}
+  .hero__side .tags{margin-top:var(--space-2)}
+}
+.hero__strip{border-top:1px solid var(--ink);border-bottom:1px solid var(--line);margin-top:0}
+@media (min-width:960px){.hero__strip{margin-top:0}}
+.strip{display:grid;grid-template-columns:repeat(2,1fr)}
+.strip li{padding:var(--space-4) 0;display:flex;gap:var(--space-3);align-items:baseline;font-weight:600;border-bottom:1px solid var(--line)}
+.strip li:nth-child(odd){padding-right:var(--space-3)}
+.strip li:nth-last-child(-n+2){border-bottom:0}
+.strip .idx{color:var(--brand)}
+@media (min-width:768px){.strip{grid-template-columns:repeat(4,1fr)}.strip li{border-bottom:0;border-left:1px solid var(--line);padding-left:var(--space-4)}.strip li:first-child{border-left:0;padding-left:0}}
+
+/* ---- reviews: sticky side ---- */
+.proof .grid{row-gap:var(--space-7)}
+.proof__side{grid-column:1/-1}
+.proof__side>.proof__big{margin-top:0;color:var(--ink)}
+.proof__big{font-weight:900;font-size:var(--step-5);line-height:.85;letter-spacing:-.06em;display:flex;align-items:flex-start;gap:var(--space-3)}
+.proof__big span{font:500 var(--step--1)/1.3 var(--mono);letter-spacing:.04em;text-transform:uppercase;color:var(--ink-soft);margin-top:.6em}
+.proof__side h2{font-size:var(--step-4);margin-top:var(--space-6)}
+.proof__side>.proof__avg{display:flex;align-items:center;gap:var(--space-3);margin-top:var(--space-4);font:500 var(--step--1)/1 var(--mono);letter-spacing:.04em;text-transform:uppercase;color:var(--ink)}
+.proof__avg .stars{color:var(--brand)}
+.proof__avg .stars svg{width:18px;height:18px}
+.proof__side>p{margin-top:var(--space-5);color:var(--ink-soft);max-width:36ch}
+.proof__link{margin-top:var(--space-5)}
+.rail{grid-column:1/-1;display:grid;grid-auto-flow:column;grid-auto-columns:84%;gap:var(--space-4);overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;
+  margin-inline:calc(var(--gutter) * -1);padding-inline:var(--gutter);scroll-padding-inline:var(--gutter);scrollbar-width:none;padding-bottom:var(--space-2)}
+.rail::-webkit-scrollbar{display:none}
+.rv{scroll-snap-align:start;display:flex;flex-direction:column;justify-content:space-between;gap:var(--space-6);background:#fff;border:1px solid var(--line);padding:var(--space-5);border-radius:var(--radius);min-height:100%}
+.rv blockquote p{font-size:var(--step-0);line-height:1.5}
+.rv blockquote p::before{content:"“"}
+.rv blockquote p::after{content:"”"}
+.rv footer{display:flex;justify-content:space-between;align-items:center;gap:var(--space-3);padding-top:var(--space-4);border-top:1px solid var(--line)}
+.rv cite{font-style:normal;font-weight:600}
+.rv .stars{color:var(--brand)}
+.rv__n{font:500 var(--step--1)/1 var(--mono);color:var(--ink-soft)}
+.rail-hint{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;margin-top:calc(var(--space-5) * -1)}
+.rail-hint .label{display:flex;align-items:center;gap:var(--space-2)}
+@media (min-width:960px){
+  .proof__side{grid-column:1/5;position:sticky;top:110px;align-self:start}
+  .proof__side h2{font-size:var(--step-3)}
+  .rail{grid-column:6/13;grid-auto-flow:row;grid-template-columns:1fr 1fr;grid-auto-columns:auto;overflow:visible;margin:0;padding:0;gap:var(--space-5)}
+  .rv:nth-child(even){transform:translateY(var(--space-9))}
+  .rail-hint{display:none}
+  .proof{padding-bottom:calc(var(--section) + var(--space-9))}
+}
+
+/* ---- training: oversized numbered accordion ---- */
+.training{border-top:1px solid var(--line)}
+.training .intro{grid-column:1/-1;margin-bottom:var(--space-7)}
+.training h2{font-size:var(--step-4)}
+.training .intro p{margin-top:var(--space-5)}
+.acc{grid-column:1/-1;border-top:2px solid var(--ink)}
+.acc details{border-bottom:1px solid var(--line)}
+.acc summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:var(--space-4);padding:var(--space-5) 0;min-height:64px}
+.acc summary::-webkit-details-marker{display:none}
+.acc .idx{color:var(--brand);align-self:start;padding-top:.7em}
+.acc h3{font-size:var(--step-3);letter-spacing:-.04em;line-height:1;transition:transform var(--dur-2) var(--ease-out)}
+.acc .plus{position:relative;width:40px;height:40px;border:1px solid var(--line);border-radius:50%;transition:background var(--dur-2),border-color var(--dur-2),transform var(--dur-2) var(--ease-out)}
+.acc .plus::before,.acc .plus::after{content:"";position:absolute;left:50%;top:50%;width:14px;height:1.75px;margin:-.875px 0 0 -7px;background:currentColor;transition:transform var(--dur-2) var(--ease-out)}
+.acc .plus::after{transform:rotate(90deg)}
+.acc details[open] .plus{background:var(--ink);border-color:var(--ink);color:#fff}
+.acc details[open] .plus::after{transform:rotate(0)}
+.acc__body{display:grid;gap:var(--space-4);padding:0 0 var(--space-6) calc(var(--space-4) + 2.2ch);max-width:72ch}
+.acc__body p{color:var(--ink-soft)}
+.acc__body .tags{color:var(--ink)}
+@media (hover:hover){.acc summary:hover h3{transform:translateX(8px)}.acc summary:hover .plus{border-color:var(--ink)}}
+@media (min-width:960px){
+  .training .intro{grid-column:1/6;position:sticky;top:110px;align-self:start;margin:0}
+  .acc{grid-column:6/13}
+  .acc h3{font-size:var(--step-4)}
+}
+
+/* ---- health check metrics (ink block) ---- */
+.on-ink{background:var(--ink);color:#fff}
+.check h2{font-size:var(--step-4);grid-column:1/-1}
+.check .lede{grid-column:1/-1;margin-top:var(--space-5);color:rgba(255,255,255,.78)}
+.metrics{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;margin-top:var(--space-7);border-top:1px solid var(--line-ink)}
+.metrics li{padding:var(--space-5) var(--space-4) var(--space-5) 0;border-bottom:1px solid var(--line-ink);display:grid;gap:var(--space-2)}
+.metrics li:nth-child(even){padding-left:var(--space-4);border-left:1px solid var(--line-ink)}
+.metrics b{font-weight:900;font-size:var(--step-4);letter-spacing:-.05em;line-height:.9}
+.metrics li:first-child b{color:#FF7A5C}
+.metrics span{font:500 var(--step--1)/1.3 var(--mono);letter-spacing:.03em;text-transform:uppercase;opacity:.75}
+.metrics li:last-child{grid-column:1/-1;display:flex;align-items:baseline;gap:var(--space-4)}
+.check__cta{grid-column:1/-1;margin-top:var(--space-7)}
+.check .btn{--b:#fff;--f:var(--ink)}
+@media (min-width:960px){
+  .check h2{grid-column:1/7}
+  .check .lede{grid-column:8/13;margin-top:0;align-self:end}
+  .metrics{grid-template-columns:repeat(5,1fr)}
+  .metrics li,.metrics li:nth-child(even){padding:var(--space-6) var(--space-5);border-left:1px solid var(--line-ink);border-bottom:0}
+  .metrics li:first-child{border-left:0;padding-left:0}
+  .metrics li:last-child{grid-column:auto;display:grid}
+}
+
+/* ---- Dave: editorial two-column ---- */
+.dave .grid{row-gap:var(--space-7)}
+.dave__head{grid-column:1/-1}
+.dave h2{font-size:var(--step-5);letter-spacing:-.055em}
+.dave h2 span{color:var(--brand)}
+.dave__copy{grid-column:1/-1}
+.facts{grid-column:1/-1;display:grid;border-top:2px solid var(--ink)}
+.facts div{display:grid;grid-template-columns:7.5rem 1fr;gap:var(--space-4);align-items:baseline;padding:var(--space-4) 0;border-bottom:1px solid var(--line)}
+.facts dt{font-weight:900;font-size:var(--step-3);letter-spacing:-.05em;line-height:1}
+.facts dd{color:var(--ink-soft)}
+.pull{grid-column:1/-1;position:relative;padding:var(--space-6) 0 0;border-top:1px solid var(--line)}
+.pull::before{content:"“";position:absolute;top:-.12em;right:0;font-weight:900;font-size:10rem;line-height:1;color:var(--brand)}
+.pull p{font-weight:600;font-size:var(--step-2);line-height:1.22;letter-spacing:-.02em;max-width:30ch;text-wrap:balance}
+.pull footer{margin-top:var(--space-5);display:flex;gap:var(--space-3);align-items:center}
+.pull .stars{color:var(--brand)}
+@media (min-width:960px){
+  .dave__head{grid-column:1/9}
+  .dave__copy{grid-column:1/6}
+  .facts{grid-column:7/13;grid-row:2/4;align-self:start}
+  .facts div{grid-template-columns:10rem 1fr}
+  .pull{grid-column:1/7;margin-left:calc(var(--gutter) * -0)}
+}
+
+/* ---- statement band ---- */
+.on-brand{background:var(--brand);color:var(--brand-ink)}
+.band{overflow:hidden}
+.band q{display:block;quotes:"“" "”";font-weight:900;font-size:var(--step-5);line-height:.92;letter-spacing:-.055em;max-width:14ch;text-wrap:balance}
+.band q::before{content:open-quote}
+.band q::after{content:close-quote}
+.band figcaption{margin-top:var(--space-6);display:flex;gap:var(--space-3);align-items:center;flex-wrap:wrap}
+.band figcaption span{opacity:.8}
+.band .wrap{position:relative}
+.band__time{position:absolute;right:var(--gutter);bottom:-.18em;font-weight:900;font-size:clamp(6rem,30vw,22rem);letter-spacing:-.07em;line-height:.8;color:rgba(255,255,255,.12);pointer-events:none;z-index:0}
+.band figure{position:relative;z-index:1}
+
+/* ---- visit: signature timetable + map ---- */
+.visit .grid{row-gap:var(--space-7)}
+.visit__head{grid-column:1/-1}
+.visit h2{font-size:var(--step-4)}
+.live{display:block;font-weight:900;font-size:var(--step-5);letter-spacing:-.055em;line-height:.9;margin-top:var(--space-4)}
+.live[data-open="true"]{color:var(--brand)}
+.live-sub{margin-top:var(--space-3);font:500 var(--step--1)/1.4 var(--mono);color:var(--ink-soft);letter-spacing:.02em}
+.tt{grid-column:1/-1}
+.tt__axis,.tt__row{display:grid;grid-template-columns:4.2rem 1fr;gap:var(--space-3);align-items:center}
+.tt__axis{font:500 .6875rem/1 var(--mono);color:var(--ink-soft);padding-bottom:var(--space-2)}
+.tt__ticks{position:relative;height:1em}
+.tt__ticks span{position:absolute;transform:translateX(-50%);left:var(--x)}
+.tt__ticks span:first-child{transform:none}
+
+.tt__row{padding:var(--space-3) 0;border-top:1px solid var(--line);position:relative}
+.tt__row:last-child{border-bottom:1px solid var(--line)}
+.tt__day{font-weight:600}
+.tt__day abbr{text-decoration:none}
+.tt__track{position:relative;height:30px;background:repeating-linear-gradient(90deg,var(--line) 0 1px,transparent 1px calc(100% / 14));background-size:100% 100%}
+.tt__bar{position:absolute;top:4px;bottom:4px;left:var(--s);right:calc(100% - var(--e));background:var(--ink);border-radius:var(--radius);display:flex;align-items:center;padding:0 var(--space-2);overflow:hidden}
+.tt__bar span{font:500 .6875rem/1 var(--mono);color:#fff;white-space:nowrap;letter-spacing:.01em}
+.tt__row.is-today .tt__day{color:var(--brand)}
+.tt__row.is-today .tt__bar{background:var(--brand)}
+.tt__row.is-today .tt__day::after{content:"Today";display:block;font:500 .625rem/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;margin-top:3px}
+.tt__now{position:absolute;top:-6px;bottom:-6px;width:2px;background:var(--ink);left:var(--n);display:none}
+.tt__now::before{content:"";position:absolute;top:-4px;left:-3px;width:8px;height:8px;border-radius:50%;background:var(--ink)}
+.is-today .tt__now.on{display:block}
+.visit__map{grid-column:1/-1;display:grid;gap:var(--space-5)}
+.map{position:relative;aspect-ratio:4/3.4;border-radius:var(--radius);overflow:hidden;background:var(--surface);border:1px solid var(--line)}
+.map iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:grayscale(1) contrast(1.05)}
+.map__fallback{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:var(--space-5);font-weight:600}
+.addr{font-weight:600;font-size:var(--step-2);letter-spacing:-.025em;line-height:1.15;font-style:normal}
+.addr span{display:block;color:var(--ink-soft);font-weight:400;font-size:var(--step-0);line-height:1.5;letter-spacing:0;margin-top:var(--space-3)}
+.practical{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
+.practical li{display:flex;gap:var(--space-3);align-items:flex-start;padding:var(--space-3) var(--space-2) var(--space-3) 0;border-bottom:1px solid var(--line);font-size:var(--step--1);line-height:1.4}
+.practical .ico{width:18px;height:18px;color:var(--brand);margin-top:1px}
+.visit__ctas{display:flex;flex-wrap:wrap;gap:var(--space-3)}
+@media (min-width:960px){
+  .visit__head{grid-column:1/8}
+  .tt{grid-column:1/8}
+  .tt__axis,.tt__row{grid-template-columns:6rem 1fr}
+  .tt__track{height:40px}
+  .visit__map{grid-column:9/13;grid-row:1/3;align-self:start}
+  .map{aspect-ratio:4/4.4}
+}
+
+/* ---- contact poster ---- */
+.contact{border-top:2px solid var(--ink)}
+.contact h2{font-size:var(--step-4);grid-column:1/-1}
+.contact .lede{grid-column:1/-1;margin-top:var(--space-5);color:var(--ink-soft)}
+.phone{grid-column:1/-1;display:block;margin-top:var(--space-7);font-weight:900;font-size:clamp(2.6rem,13.6vw,9.5rem);letter-spacing:-.06em;line-height:.9;text-decoration:none;white-space:nowrap;color:var(--brand)}
+.phone span{display:inline-block;transition:transform var(--dur-2) var(--ease-out)}
+@media (hover:hover){.phone:hover span{transform:translateX(12px)}}
+.contact__ctas{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);margin-top:var(--space-7)}
+.contact__ctas .btn:last-child{grid-column:1/-1}
+@media (min-width:640px){.contact__ctas{grid-template-columns:repeat(3,auto);justify-content:start}.contact__ctas .btn:last-child{grid-column:auto}}
+@media (min-width:960px){.contact h2{grid-column:1/8}.contact .lede{grid-column:9/13;align-self:end;margin:0}}
+
+/* ---- footer ---- */
+.ftr{background:var(--ink);color:rgba(255,255,255,.78);padding-block:var(--space-8) var(--space-7);font-size:var(--step--1)}
+.ftr .grid{row-gap:var(--space-6)}
+.ftr .mark__txt{color:#fff;font-size:1.75rem}
+.ftr .mark__txt small{color:rgba(255,255,255,.65)}
+.ftr__a{grid-column:1/-1}
+.ftr__b,.ftr__c{grid-column:span 2;display:grid;gap:var(--space-2);align-content:start}
+.ftr__b a,.ftr__c a{display:inline-flex;align-items:center;gap:var(--space-2);min-height:44px;text-decoration:none;color:#fff}
+.ftr__bottom{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--space-3);padding-top:var(--space-5);border-top:1px solid var(--line-ink);font-family:var(--mono);font-size:.75rem;letter-spacing:.03em}
+.ftr__bottom a{display:inline-flex;align-items:center;min-height:44px}
+
+@media (min-width:960px){.ftr__a{grid-column:1/7}.ftr__b{grid-column:7/10}.ftr__c{grid-column:10/13}}
+
+/* ---- sticky action bar ---- */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:grid;grid-template-columns:repeat(3,1fr);background:var(--ink);padding-bottom:env(safe-area-inset-bottom);border-top:1px solid #000}
+.bar a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-height:var(--bar);color:#fff;text-decoration:none;font-weight:600;font-size:.875rem;border-left:1px solid rgba(255,255,255,.14);transition:background var(--dur-1)}
+.bar a:first-child{background:var(--brand);border-left:0}
+.bar a:active{background:#000}
+.bar a:first-child:active{background:#A92B16}
+@media (min-width:768px){.bar{display:none}}
+
+/* ---- motion ---- */
+.js .hdr{animation:fadeIn var(--dur-3) var(--ease-out) both}
+.js .hero h1 .ln>span{animation:rise var(--dur-3) var(--ease-out) both;animation-delay:calc(150ms + var(--i) * 80ms)}
+.js .hero .rise{animation:fadeUp var(--dur-3) var(--ease-out) both;animation-delay:520ms}
+.js .pad{animation:wipe 1s var(--ease-in-out) both;animation-delay:300ms}
+@keyframes fadeIn{from{opacity:0}}
+@keyframes rise{from{transform:translateY(105%)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}}
+@keyframes wipe{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0)}}
+.js .rv-el{opacity:0;transform:translateY(20px);transition:opacity var(--dur-3) var(--ease-out),transform var(--dur-3) var(--ease-out);transition-delay:calc(var(--d,0) * 70ms)}
+.js .rv-el.in{opacity:1;transform:none}
+@media (min-width:960px){.js .rail .rv:nth-child(even).rv-el.in{transform:translateY(var(--space-9))}.js .rail .rv:nth-child(even).rv-el{transform:translateY(calc(var(--space-9) + 20px))}}
+.js .tt__bar{transform:scaleX(0);transform-origin:left;transition:transform 1s var(--ease-out);transition-delay:calc(var(--d,0) * 60ms + 150ms)}
+.js .tt.in .tt__bar{transform:none}
+@supports (animation-timeline:view()){
+  .pad__rings{animation:spin linear both;animation-timeline:view();animation-range:entry 0% exit 100%}
+  @keyframes spin{from{transform:rotate(-20deg) scale(1)}to{transform:rotate(25deg) scale(1.12)}}
+  .band__time{animation:drift linear both;animation-timeline:view()}
+  @keyframes drift{from{transform:translateX(12%)}to{transform:translateX(-8%)}}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .rv-el,.js .tt__bar{opacity:1;transform:none}
+  .js .rail .rv:nth-child(even).rv-el{transform:none}
+}
+@media (prefers-reduced-motion:reduce) and (min-width:960px){.js .rail .rv:nth-child(even).rv-el{transform:translateY(var(--space-9))}}
+</style>
+<!--sf:preview--><meta name="robots" content="noindex, nofollow"><!--/sf:preview-->
+<!--sf:og--><meta property="og:image" content="https://leonstrada-fitness-and-rehabilitation.aymenjallouli.dev/og.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:url" content="https://leonstrada-fitness-and-rehabilitation.aymenjallouli.dev/"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://leonstrada-fitness-and-rehabilitation.aymenjallouli.dev/og.jpg"><!--/sf:og-->
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="hdr" id="top">
+  <div class="wrap hdr__in">
+    <a class="mark" href="#top" aria-label="Leonstrada, back to top">
+      <span class="mark__sq" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="M18 8h11v35h19v11H18z"/></svg></span>
+      <span class="mark__txt">Leonstrada<small>Fitness &amp; Rehabilitation</small></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#reviews">Reviews</a>
+      <a href="#training">Training</a>
+      <a href="#dave">Dave</a>
+      <a href="#visit">Hours</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="btn hdr__cta" href="tel:+447738091794"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2"/></svg>07738 091794</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="drawer"><span class="menu-btn__bars" aria-hidden="true"></span><span class="menu-btn__t">Menu</span></button>
+  </div>
+</header>
+
+<div class="drawer" id="drawer" aria-label="Menu">
+  <ol>
+    <li><a href="#reviews" style="--i:0">Reviews</a></li>
+    <li><a href="#training" style="--i:1">Training</a></li>
+    <li><a href="#dave" style="--i:2">Dave</a></li>
+    <li><a href="#visit" style="--i:3">Hours &amp; address</a></li>
+    <li><a href="#contact" style="--i:4">Book</a></li>
+  </ol>
+  <div class="drawer__foot">
+    <span class="label">37 Oakgrove Pl, Northampton NN4 0SB</span>
+    <a class="btn btn--light" href="tel:+447738091794">Call 07738 091794</a>
+  </div>
+</div>
+
+<main id="main">
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="h1">
+    <div class="wrap">
+      <div class="hero__meta rise">
+        <span class="label">Personal trainer — Northampton, NN4</span>
+        <span class="badge" data-badge>Mon–Fri 6:30 am · Sat–Sun 8 am</span>
+      </div>
+      <div class="grid">
+        <h1 id="h1">
+          <span class="ln"><span style="--i:0">Stronger,</span></span>
+          <span class="ln"><span style="--i:1">week on</span></span>
+          <span class="ln"><span style="--i:2"><em>week.</em></span></span>
+        </h1>
+        <div class="hero__side rise">
+          <p>One-to-one <strong>strength, mobility, rehabilitation and kickboxing</strong> with Dave, personal trainer and black-belt instructor, in Northampton.</p>
+        </div>
+        <div class="pad on-brand" aria-label="Google rating and booking">
+          <svg class="pad__rings" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><circle cx="100" cy="100" r="98"/><circle cx="100" cy="100" r="78"/><circle cx="100" cy="100" r="58"/><circle cx="100" cy="100" r="38"/><circle cx="100" cy="100" r="18" fill="currentColor"/><path d="M100 0v200M0 100h200"/></svg>
+          <div class="pad__score">
+            <span class="pad__num">5.0</span>
+            <div>
+              <span class="stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg></span>
+              <p>32 Google reviews<br><a class="link" href="#reviews">Read what clients say</a></p>
+            </div>
+          </div>
+          <div class="pad__ctas">
+            <a class="btn" href="tel:+447738091794"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2"/></svg>Call Dave</a>
+            <a class="btn btn--ghost btn--light" href="sms:+447738091794?&amp;body=Hi%20Dave%2C%20I%20found%20Leonstrada%20online%20and%20I%E2%80%99d%20like%20to%20book%20a%20first%20session.%20When%20do%20you%20have%20space%3F"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>Text to book</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="hero__strip">
+        <ul class="strip" aria-label="Disciplines">
+          <li><span class="idx">01</span>Strength</li>
+          <li><span class="idx">02</span>Mobility</li>
+          <li><span class="idx">03</span>Rehabilitation</li>
+          <li><span class="idx">04</span>Kickboxing</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF -->
+  <section class="section proof" id="reviews" aria-labelledby="rv-h">
+    <div class="wrap grid">
+      <div class="proof__side rv-el">
+        <p class="proof__big">32 <span>Google<br>reviews</span></p>
+        <p class="proof__avg"><span class="stars" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg></span>5.0 average rating</p>
+        <h2 id="rv-h">Nervous before the first session. Bouncing out after it.</h2>
+        <p>Clients come back to the same words: encouraging, patient, challenging, fun. Here is how they put it.</p>
+        <p class="proof__link"><a class="link" href="https://www.google.com/maps/place/?q=place_id:ChIJ7z71oX4Pd0gRB2Ogsf91SHo" target="_blank" rel="noopener">See all 32 reviews on Google ↗</a></p>
+      </div>
+
+      <div class="rail" tabindex="0" aria-label="Client reviews, scroll sideways">
+        <article class="rv rv-el" style="--d:0">
+          <blockquote><p>I’m not much of a gym goer, and was nervous to go for the first session. But Dave was super friendly and made me feel at ease straight away … He also tailored the session to suit my training as a runner, which has already helped</p></blockquote>
+          <footer><cite>Lauren D.</cite><span class="stars" aria-label="5 stars"><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg></span></footer>
+        </article>
+        <article class="rv rv-el" style="--d:1">
+          <blockquote><p>I can’t recommend Dave enough. He is really motivating, knowledgeable, supportive and is also easy to talk to. Every session is challenging but enjoyable. … Giving me tailored workout plans and setting a reasonable goal I’ve gained strength, lost weight, and built confidence…</p></blockquote>
+          <footer><cite>andrew P.</cite><span class="stars" aria-label="5 stars"><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg></span></footer>
+        </article>
+        <article class="rv rv-el" style="--d:2">
+          <blockquote><p>As a complete beginner, I wasn’t sure what to expect … He knows how to push you just the right amount while making you feel supported and capable. I genuinely look forward to every session.</p></blockquote>
+          <footer><cite>Uresha P.</cite><span class="stars" aria-label="5 stars"><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg></span></footer>
+        </article>
+        <article class="rv rv-el" style="--d:3">
+          <blockquote><p>I am getting stronger week on week, more toned and my body composition is changing. … He really takes the time to understand what your goals are and supports you every step of the way so you can achieve them.</p></blockquote>
+          <footer><cite>Donna M.</cite><span class="stars" aria-label="5 stars"><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg></span></footer>
+        </article>
+        <article class="rv rv-el" style="--d:4">
+          <blockquote><p>1-2-1 sessions are tailored to my needs and Dave is always so encouraging, pushing me to try new things but always respecting my limits. … I always come away feeling stronger and fitter and having had a good laugh.</p></blockquote>
+          <footer><cite>Molly S.</cite><span class="stars" aria-label="5 stars"><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg></span></footer>
+        </article>
+        <article class="rv rv-el" style="--d:5">
+          <blockquote><p>Dave is very encouraging &amp; patient (especially when my brain isnt quite engaging), but makes sure you're being pushed and learning new combos every session.</p></blockquote>
+          <footer><cite>Leanne E.</cite><span class="stars" aria-label="5 stars"><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg></span></footer>
+        </article>
+        <article class="rv rv-el" style="--d:6">
+          <blockquote><p>Dave makes that class fun, enjoyable and pushes you to be the best you can … I decided to do some PTing with Dave in the lead up to my wedding … I feel more confident and stronger than I have ever done</p></blockquote>
+          <footer><cite>Stacey B.</cite><span class="stars" aria-label="5 stars"><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg></span></footer>
+        </article>
+      </div>
+      <div class="rail-hint" aria-hidden="true"><span class="label">Swipe <svg class="ico" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><span class="label" data-rail-count>01 / 07</span></div>
+    </div>
+  </section>
+
+  <!-- TRAINING -->
+  <section class="section training" id="training" aria-labelledby="tr-h">
+    <div class="wrap grid">
+      <div class="intro rv-el">
+        <p class="label">What Dave coaches</p>
+        <h2 id="tr-h" style="margin-top:var(--space-4)">Built for one person at a time.</h2>
+        <p class="prose">Every programme starts from your day-to-day life and your goals, whether that is a first session in years, a wedding date, or getting back to the gym after surgery.</p>
+      </div>
+      <div class="acc">
+        <details class="rv-el" style="--d:0" open>
+          <summary><span class="idx">01</span><h3>Strength</h3><span class="plus" aria-hidden="true"></span></summary>
+          <div class="acc__body"><p>Tailored workout plans and goals set at a pace you can keep. Sessions are challenging but enjoyable, and built around you.</p><ul class="tags"><li>1-to-1</li><li>Tailored plans</li></ul></div>
+        </details>
+        <details class="rv-el" style="--d:1">
+          <summary><span class="idx">02</span><h3>Mobility</h3><span class="plus" aria-hidden="true"></span></summary>
+          <div class="acc__body"><p>Strength and mobility training with one aim: a better quality of life. Moving freely, lifting comfortably, trusting your body again.</p><ul class="tags"><li>1-to-1</li><li>Outdoor sessions</li></ul></div>
+        </details>
+        <details class="rv-el" style="--d:2">
+          <summary><span class="idx">03</span><h3>Rehabilitation</h3><span class="plus" aria-hidden="true"></span></summary>
+          <div class="acc__body"><p>Returning after illness, an operation or a long break. Sessions start where your body is today and build from there, at the pace it allows.</p><ul class="tags"><li>1-to-1</li><li>Appointment required</li></ul></div>
+        </details>
+        <details class="rv-el" style="--d:3">
+          <summary><span class="idx">04</span><h3>Kickboxing</h3><span class="plus" aria-hidden="true"></span></summary>
+          <div class="acc__body"><p>One-to-one kickboxing with a black-belt instructor: technique, new combinations each session and a serious workout. Complete beginners included.</p><ul class="tags"><li>1-to-1</li><li>Black-belt instructor</li></ul></div>
+        </details>
+        <details class="rv-el" style="--d:4">
+          <summary><span class="idx">05</span><h3>Nutrition &amp; lifestyle</h3><span class="plus" aria-hidden="true"></span></summary>
+          <div class="acc__body"><p>Nutritional advice and lifestyle programmes built around your routine, so the work in the gym carries on outside it.</p><ul class="tags"><li>Online classes</li><li>Tailored programmes</li></ul></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- HEALTH CHECK -->
+  <section class="section check on-ink" aria-labelledby="hc-h">
+    <div class="wrap grid">
+      <div class="sec-head rv-el" style="grid-column:1/-1"><span class="label">Free health check</span><span class="label">5 measures</span></div>
+      <h2 id="hc-h" class="rv-el">Start with the numbers.</h2>
+      <p class="lede rv-el">Dave offers a free health check: five measurements that give you both a clear starting line.</p>
+      <ul class="metrics">
+        <li class="rv-el" style="--d:0"><b>BP</b><span>Blood pressure</span></li>
+        <li class="rv-el" style="--d:1"><b>BF%</b><span>Body fat percentage</span></li>
+        <li class="rv-el" style="--d:2"><b>BMI</b><span>Body mass index</span></li>
+        <li class="rv-el" style="--d:3"><b>BMR</b><span>Basal metabolic rate</span></li>
+        <li class="rv-el" style="--d:4"><b>Wt</b><span>Weight</span></li>
+      </ul>
+      <div class="check__cta rv-el"><a class="btn" href="sms:+447738091794?&amp;body=Hi%20Dave%2C%20I%E2%80%99d%20like%20to%20book%20a%20free%20health%20check.%20When%20are%20you%20available%3F">Ask for a health check <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+    </div>
+  </section>
+
+  <!-- DAVE -->
+  <section class="section dave" id="dave" aria-labelledby="dv-h">
+    <div class="wrap grid">
+      <div class="dave__head rv-el">
+        <p class="label">Your coach</p>
+        <h2 id="dv-h" style="margin-top:var(--space-4)">Black belt. <span>Patient</span> coach.</h2>
+      </div>
+      <div class="dave__copy prose rv-el">
+        <p>Dave is a personal trainer and black-belt kickboxing instructor. Before Leonstrada he ran Kickfit Coaching for almost ten years, teaching kickboxing and self-defence alongside personal training.</p>
+        <p>Today the focus is quality of life: strength and mobility work, nutritional advice and programmes shaped around how you actually live. Clients describe him as encouraging, observant and always ready to listen.</p>
+      </div>
+      <dl class="facts">
+        <div class="rv-el" style="--d:0"><dt>~10&nbsp;yrs</dt><dd>Running Kickfit Coaching: kickboxing, self-defence and personal training</dd></div>
+        <div class="rv-el" style="--d:1"><dt>Black</dt><dd>Belt in kickboxing, now coached one-to-one</dd></div>
+        <div class="rv-el" style="--d:2"><dt>1:1</dt><dd>Sessions tailored to your body, your goals and your week</dd></div>
+        <div class="rv-el" style="--d:3"><dt>6:30</dt><dd>Earliest weekday start, for training before work</dd></div>
+      </dl>
+      <figure class="pull rv-el">
+        <blockquote><p>Dave bounded into my life and with care, courtesy and fun he started on the journey to rebuild my confidence in the gym and trust in my body.</p></blockquote>
+        <footer><span class="stars" aria-label="5 stars"><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg></span><cite class="label" style="font-style:normal">Liz B. · Google review</cite></footer>
+      </figure>
+    </div>
+  </section>
+
+  <!-- STATEMENT -->
+  <section class="section band on-brand" aria-label="Client quote">
+    <div class="wrap">
+      <span class="band__time" aria-hidden="true">7am</span>
+      <figure class="rv-el">
+        <q>I literally bounce out of the gym I feel so full of energy after</q>
+        <figcaption><span class="stars" aria-label="5 stars"><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8l-6.5 3.9 1.7-7.3L1.6 9.5 9 8.9z"/></svg></span><b>Leanne E.</b><span>— kickboxing, “most definitely worth being at the gym for 7am”</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- VISIT -->
+  <section class="section visit" id="visit" aria-labelledby="vi-h">
+    <div class="wrap grid">
+      <div class="visit__head rv-el">
+        <p class="label" id="vi-h">Hours &amp; address</p>
+        <p class="live" data-live>Mon–Fri from 6:30 am</p>
+        <p class="live-sub" data-live-sub>By appointment only. Call or text to book a slot.</p>
+      </div>
+
+      <div class="tt" data-tt aria-label="Opening hours">
+        <div class="tt__axis" aria-hidden="true"><span></span><div class="tt__ticks"><span style="--x:0%">6am</span><span style="--x:21.43%">9am</span><span style="--x:42.86%">12pm</span><span style="--x:64.29%">3pm</span><span style="--x:85.71%">6pm</span></div></div>
+        <div class="tt__row" data-day="1" data-hours="6:30 am–6:30 pm"><span class="tt__day"><abbr title="Monday">Mon</abbr></span><div class="tt__track"><div class="tt__bar" style="--s:3.571%;--e:89.286%;--d:0"><span>6:30 am – 6:30 pm</span></div><i class="tt__now"></i></div></div>
+        <div class="tt__row" data-day="2" data-hours="6:30 am–6:30 pm"><span class="tt__day"><abbr title="Tuesday">Tue</abbr></span><div class="tt__track"><div class="tt__bar" style="--s:3.571%;--e:89.286%;--d:1"><span>6:30 am – 6:30 pm</span></div><i class="tt__now"></i></div></div>
+        <div class="tt__row" data-day="3" data-hours="6:30 am–6:30 pm"><span class="tt__day"><abbr title="Wednesday">Wed</abbr></span><div class="tt__track"><div class="tt__bar" style="--s:3.571%;--e:89.286%;--d:2"><span>6:30 am – 6:30 pm</span></div><i class="tt__now"></i></div></div>
+        <div class="tt__row" data-day="4" data-hours="6:30 am–6:30 pm"><span class="tt__day"><abbr title="Thursday">Thu</abbr></span><div class="tt__track"><div class="tt__bar" style="--s:3.571%;--e:89.286%;--d:3"><span>6:30 am – 6:30 pm</span></div><i class="tt__now"></i></div></div>
+        <div class="tt__row" data-day="5" data-hours="6:30 am–6:30 pm"><span class="tt__day"><abbr title="Friday">Fri</abbr></span><div class="tt__track"><div class="tt__bar" style="--s:3.571%;--e:89.286%;--d:4"><span>6:30 am – 6:30 pm</span></div><i class="tt__now"></i></div></div>
+        <div class="tt__row" data-day="6" data-hours="8 am–6 pm"><span class="tt__day"><abbr title="Saturday">Sat</abbr></span><div class="tt__track"><div class="tt__bar" style="--s:14.286%;--e:85.714%;--d:5"><span>8 am – 6 pm</span></div><i class="tt__now"></i></div></div>
+        <div class="tt__row" data-day="0" data-hours="8 am–6 pm"><span class="tt__day"><abbr title="Sunday">Sun</abbr></span><div class="tt__track"><div class="tt__bar" style="--s:14.286%;--e:85.714%;--d:6"><span>8 am – 6 pm</span></div><i class="tt__now"></i></div></div>
+      </div>
+
+      <div class="visit__map rv-el">
+        <div class="map">
+          <a class="map__fallback link" href="https://www.google.com/maps/place/?q=place_id:ChIJ7z71oX4Pd0gRB2Ogsf91SHo" target="_blank" rel="noopener">Open the map on Google</a>
+          <iframe src="https://www.google.com/maps?q=Leonstrada%20-%20Fitness%20and%20Rehabilitation%2C%2037%20Oakgrove%20Pl%2C%20Northampton%2C%20NN4%200SB&amp;output=embed" title="Map: 37 Oakgrove Pl, Northampton NN4 0SB" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <address class="addr">37 Oakgrove Pl, Northampton NN4&nbsp;0SB<span>Sessions by appointment. Online classes and outdoor sessions also available.</span></address>
+        <ul class="practical">
+          <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="1"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>Appointment required</li>
+          <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="1"/><path d="M8 21h8M12 17v4"/></svg>Online classes</li>
+          <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>Outdoor sessions</li>
+          <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="4.5" r="1.5"/><path d="M11 7v6h5l2 5M11 10h4"/><path d="M8 11.5a5 5 0 1 0 7 6"/></svg>Accessible car park</li>
+        </ul>
+        <div class="visit__ctas">
+          <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Leonstrada%20-%20Fitness%20and%20Rehabilitation%2C%2037%20Oakgrove%20Pl%2C%20Northampton%2C%20NN4%200SB" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11 21 3l-8 18-2-8z"/></svg>Directions</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section contact" id="contact" aria-labelledby="ct-h">
+    <div class="wrap grid">
+      <h2 id="ct-h" class="rv-el">Book your first session with Dave.</h2>
+      <p class="lede rv-el">Appointment only. Call, or send a text: tell Dave what you want to work on and when you are free.</p>
+      <a class="phone rv-el" href="tel:+447738091794" aria-label="Call 07738 091794"><span>07738&nbsp;091794</span></a>
+      <div class="contact__ctas rv-el">
+        <a class="btn btn--onlight" href="tel:+447738091794"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2"/></svg>Call</a>
+        <a class="btn btn--ghost" href="sms:+447738091794?&amp;body=Hi%20Dave%2C%20I%20found%20Leonstrada%20online%20and%20I%E2%80%99d%20like%20to%20book%20a%20first%20session.%20When%20do%20you%20have%20space%3F"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>Text</a>
+        <a class="btn btn--ghost" href="https://www.instagram.com/leonstrada_fitness/" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h0"/></svg>@leonstrada_fitness</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="ftr on-ink">
+  <div class="wrap grid">
+    <div class="ftr__a">
+      <span class="mark__txt">Leonstrada<small>Fitness &amp; Rehabilitation</small></span>
+      <p style="margin-top:var(--space-4);max-width:36ch">Personal training, mobility, rehabilitation and kickboxing in Northampton.</p>
+    </div>
+    <div class="ftr__b">
+      <span class="label">Visit</span>
+      <span>37 Oakgrove Pl<br>Northampton NN4 0SB</span>
+      <a class="link" href="https://www.google.com/maps/dir/?api=1&amp;destination=Leonstrada%20-%20Fitness%20and%20Rehabilitation%2C%2037%20Oakgrove%20Pl%2C%20Northampton%2C%20NN4%200SB" target="_blank" rel="noopener">Directions ↗</a>
+    </div>
+    <div class="ftr__c">
+      <span class="label">Contact</span>
+      <a href="tel:+447738091794">07738 091794</a>
+      <a href="https://www.instagram.com/leonstrada_fitness/" target="_blank" rel="noopener" aria-label="Instagram: leonstrada_fitness"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h0"/></svg>Instagram</a>
+    </div>
+    <div class="ftr__bottom">
+      <span>© <span data-year>2026</span> Leonstrada — Fitness and Rehabilitation</span>
+      <a href="#top" class="link">Back to top ↑</a>
+    </div>
+  </div>
+</footer>
+
+<nav class="bar" aria-label="Quick actions">
+  <a href="tel:+447738091794"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2"/></svg>Call</a>
+  <a href="sms:+447738091794?&amp;body=Hi%20Dave%2C%20I%20found%20Leonstrada%20online%20and%20I%E2%80%99d%20like%20to%20book%20a%20first%20session.%20When%20do%20you%20have%20space%3F"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>Text</a>
+  <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Leonstrada%20-%20Fitness%20and%20Rehabilitation%2C%2037%20Oakgrove%20Pl%2C%20Northampton%2C%20NN4%200SB" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11 21 3l-8 18-2-8z"/></svg>Directions</a>
+</nav>
+
+<script>
+(function(){
+  var d=document,$=function(s,c){return(c||d).querySelector(s)},$$=function(s,c){return[].slice.call((c||d).querySelectorAll(s))};
+  var y=$('[data-year]');if(y)y.textContent=new Date().getFullYear();
+
+  /* header shrink */
+  var hdr=$('.hdr');
+  var onScroll=function(){hdr.classList.toggle('is-scrolled',scrollY>24)};
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  /* menu */
+  var btn=$('.menu-btn'),drawer=$('#drawer'),label=$('.menu-btn__t');
+  function setMenu(open){
+    btn.setAttribute('aria-expanded',open);drawer.classList.toggle('is-open',open);
+    hdr.classList.toggle('menu-open',open);d.body.classList.toggle('lock',open);
+    label.textContent=open?'Close':'Menu';
+    if(open){var f=$('a',drawer);setTimeout(function(){f&&f.focus()},250)}
+  }
+  btn.addEventListener('click',function(){setMenu(btn.getAttribute('aria-expanded')!=='true')});
+  $$('a',drawer).forEach(function(a){a.addEventListener('click',function(){setMenu(false)})});
+  d.addEventListener('keydown',function(e){if(e.key==='Escape'&&btn.getAttribute('aria-expanded')==='true'){setMenu(false);btn.focus()}});
+  addEventListener('resize',function(){if(innerWidth>=960)setMenu(false)});
+
+  /* hours: parse "6:30 am–6:30 pm", "09:00–12:00, 14:00–19:00", "Closed", "Open 24 hours" */
+  function toMin(t){
+    var m=String(t).trim().toLowerCase().match(/^(\d{1,2})(?:[:.h](\d{2}))?\s*(am|pm)?$/);
+    if(!m)return null;var h=+m[1],mi=+(m[2]||0);
+    if(m[3]==='pm'&&h<12)h+=12;if(m[3]==='am'&&h===12)h=0;return h*60+mi;
+  }
+  function parse(s){
+    s=String(s||'').trim();if(!s||/closed|fermé/i.test(s))return[];
+    if(/24\s*h|24 hours/i.test(s))return[[0,1440]];
+    return s.split(/[,;]/).map(function(r){
+      var p=r.split(/\s*[–—-]\s*|\s+to\s+/);if(p.length<2)return null;
+      var b=p[1].match(/am|pm/i),a=p[0].match(/am|pm/i);
+      if(b&&!a)p[0]+=' '+b[0];
+      var o=toMin(p[0]),c=toMin(p[1]);if(o==null||c==null)return null;
+      if(c<=o)c+=1440;return[o,c];
+    }).filter(Boolean);
+  }
+  function fmt(m){m=m%1440;var h=Math.floor(m/60),mi=m%60,ap=h<12?'am':'pm',hh=h%12||12;return hh+(mi?':'+(mi<10?'0':'')+mi:'')+' '+ap}
+  var names=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  var rows=$$('.tt__row'),week={};
+  rows.forEach(function(r){week[r.dataset.day]=parse(r.dataset.hours)});
+  var now=new Date(),day=now.getDay(),mins=now.getHours()*60+now.getMinutes();
+  var open=false,until=null;
+  (week[day]||[]).forEach(function(r){if(mins>=r[0]&&mins<r[1]){open=true;until=r[1]}});
+  var prev=week[(day+6)%7]||[];
+  prev.forEach(function(r){if(r[1]>1440&&mins<r[1]-1440){open=true;until=r[1]}});
+  var msg,sub;
+  if(open){msg='Open now';sub='Until '+fmt(until)+' today · by appointment'}
+  else{
+    var next=null;
+    for(var i=0;i<8&&!next;i++){var dd=(day+i)%7;(week[dd]||[]).some(function(r){if(i>0||r[0]>mins){next={i:i,d:dd,t:r[0]};return true}})}
+    msg='Closed';
+    sub=next?'Opens '+(next.i===0?'today':next.i===1?'tomorrow':names[next.d])+' at '+fmt(next.t):'';
+  }
+  var badge=$('[data-badge]');if(badge){badge.textContent=open?'Open now · until '+fmt(until):'Closed · '+sub.replace('Opens','opens');badge.dataset.open=open}
+  var live=$('[data-live]');if(live){live.textContent=msg;live.dataset.open=open}
+  var ls=$('[data-live-sub]');if(ls)ls.textContent=sub+(open?'':' · by appointment');
+  rows.forEach(function(r){if(+r.dataset.day===day){r.classList.add('is-today');
+    var n=$('.tt__now',r),x=(mins-360)/(14*60);
+    if(n&&x>=0&&x<=1){n.style.setProperty('--n',(x*100).toFixed(2)+'%');n.classList.add('on')}}});
+
+  /* review rail counter */
+  var rail=$('.rail'),cnt=$('[data-rail-count]');
+  if(rail&&cnt){var items=$$('.rv',rail);rail.addEventListener('scroll',function(){
+    var w=items[0].getBoundingClientRect().width+16,i=Math.round(rail.scrollLeft/w)+1;
+    i=Math.min(items.length,Math.max(1,i));cnt.textContent=(i<10?'0':'')+i+' / '+(items.length<10?'0':'')+items.length},{passive:true})}
+
+  /* reveals */
+  var els=$$('.rv-el, .tt');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
+  var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:.08});
+  els.forEach(function(e){io.observe(e)});
+})();
+</script>
+<!--sf:preview--><div style="padding:18px 16px;font:13px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;text-align:center;background:#0f0f10;color:#a3a3a8">Preview made by Aymen Jallouli for Leonstrada - Fitness and Rehabilitation: this is not yet the business's official website.</div><!--/sf:preview-->
+<!--sf:track--><script>(function(){try{var q=new URLSearchParams(location.search),r=q.get('r')||sessionStorage.getItem('sf_r');if(!r)return;sessionStorage.setItem('sf_r',r);navigator.sendBeacon("https://track.aymenjallouli.dev/t"+'?r='+encodeURIComponent(r)+'&p='+encodeURIComponent(location.pathname));}catch(e){}})();</script><!--/sf:track-->
+</body>
+</html>
